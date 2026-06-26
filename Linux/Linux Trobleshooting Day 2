@@ -1,0 +1,107 @@
+# Ubuntu Commands Learned Today
+
+## Spotify
+
+# Remove Spotify (APT)
+sudo apt remove spotify-client
+sudo apt purge spotify-client
+
+# Remove Spotify (Snap)
+sudo snap remove spotify
+
+# Remove Spotify (Flatpak)
+flatpak uninstall com.spotify.Client
+
+# Remove Spotify user data
+rm -rf ~/.config/spotify
+rm -rf ~/.cache/spotify
+rm -rf ~/.local/share/spotify
+rm -rf ~/.var/app/com.spotify.Client
+rm -rf ~/snap/spotify
+
+# Check where Spotify is installed
+which spotify
+dpkg -l | grep spotify
+snap list | grep spotify
+flatpak list | grep Spotify
+
+
+## LibreOffice
+
+# Attempt to remove LibreOffice packages (APT)
+sudo apt remove libreoffice-base libreoffice-draw libreoffice-math
+
+# Remove unused dependencies
+sudo apt autoremove
+
+# Check if LibreOffice is installed via APT
+dpkg -l | grep libreoffice
+
+# Check if LibreOffice is installed as a Snap
+snap list | grep -i libre
+
+# Check if LibreOffice is installed as a Flatpak
+flatpak list | grep -i libre
+
+# List Flatpak applications
+flatpak list --app
+
+
+## APT Repository Troubleshooting
+
+# Update package lists
+sudo apt update (Refresh package list)
+
+# Search for Ookla repository
+grep -R "ookla" /etc/apt/sources.list.d/ /etc/apt/sources.list
+
+# List all repository files
+ls /etc/apt/sources.list.d/
+
+# Show all enabled repositories
+grep -R "^deb" /etc/apt/sources.list.d/
+
+# Remove broken Ookla repository
+sudo rm /etc/apt/sources.list.d/ookla_speedtest-cli.list
+
+# Display MEGA repository configuration
+cat /etc/apt/sources.list.d/megaio.sources
+
+# Remove MEGA repository
+sudo rm /etc/apt/sources.list.d/megaio.sources
+
+
+## Network & DNS Diagnostics
+
+# Test DNS resolution for MEGA
+ping -c 4 mega.nz
+
+# Test internet connectivity
+ping -c 4 google.com
+
+# Test GitHub connectivity
+ping -c 4 github.com
+
+# Test MEGA domain
+ping -c 4 mega.io
+
+# Display DNS resolver information
+resolvectl status
+
+
+## System Maintenance
+
+# Show packages that can be upgraded
+apt list --upgradable
+
+# Upgrade installed packages
+sudo apt upgrade
+
+# Remove unused packages
+sudo apt autoremove
+
+# Remove downloaded package cache
+sudo apt autoclean
+
+# Clean package cache
+sudo apt clean
